@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warikan-kun LIFF Launcher</title>
+    <link rel="stylesheet" href="./assets/app.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero-panel">
+        <span class="eyebrow">LINE Front-end Framework</span>
+        <h1>Warikan-kun LIFF Launcher</h1>
+        <p>
+          提案フォームと応募フォームの LIFF 導線を切り出した、LINE 版の初期実装です。
+          このページ自体はランチャーとして使い、各画面は個別 LIFF URL として登録します。
+        </p>
+      </section>
+
+      <section class="card-stack">
+        <article class="card">
+          <h2>使い方</h2>
+          <ol class="ordered-list">
+            <li>`assets/config.js` に LIFF ID と API Base URL を設定する</li>
+            <li>`publicBaseUrl` を Pages の公開 URL に合わせる</li>
+            <li>Cloudflare Pages などで `/line-liff/` を配信する</li>
+            <li>LINE Developers Console で Proposal / Apply 用 LIFF アプリを登録する</li>
+            <li>n8n 側で `profile/bootstrap`, `proposal/create`, `products/search`, `application/upsert` を有効化する</li>
+          </ol>
+        </article>
+
+        <article class="card grid-actions">
+          <a class="action-link" href="./proposal.html">主催者提案フォームを開く</a>
+          <a class="action-link" href="./apply.html">応募フォームを開く</a>
+        </article>
+
+        <article class="card">
+          <h2>前提 URL</h2>
+          <ul class="bullet-list">
+            <li>Proposal LIFF URL: `/line-liff/proposal.html`</li>
+            <li>Apply LIFF URL: `/line-liff/apply.html?managementId=...`</li>
+            <li>n8n API 例: `/api/liff/profile/bootstrap`, `/api/liff/proposal/create`, `/api/liff/products/search`, `/api/liff/application/upsert`</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
