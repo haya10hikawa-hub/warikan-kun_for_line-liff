@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warikan-kun | LINEグループ共同購入を3タップで</title>
+    <meta
+      name="description"
+      content="Warikan-kunは、LINEグループの共同購入を募集・応募・支払い案内まで手軽に回すためのサービスです。"
+    />
+    <style>
+      :root {
+        --bg: #f7f7f5;
+        --paper: #ffffff;
+        --ink: #171717;
+        --sub: #5f6368;
+        --line: #deded8;
+        --line-strong: #c9c9c2;
+        --green: #06c755;
+        --green-deep: #059642;
+        --blue: #1264a3;
+        --orange: #ff7a00;
+        --soft-green: #eaf8ef;
+        --soft-blue: #edf5fb;
+        --soft-orange: #fff4e8;
+        --shadow: 0 1px 2px rgba(23, 23, 23, 0.08), 0 10px 24px rgba(23, 23, 23, 0.05);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+        line-height: 1.65;
+        background: var(--bg);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .hero {
+        min-height: 92vh;
+        display: grid;
+        align-items: center;
+        padding: 28px 0;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.72fr);
+        gap: 40px;
+        align-items: center;
+      }
+
+      .kicker {
+        display: inline-flex;
+        min-height: 28px;
+        align-items: center;
+        padding: 0 10px;
+        border: 1px solid rgba(6, 199, 85, 0.28);
+        border-radius: 999px;
+        background: var(--soft-green);
+        color: var(--green-deep);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 18px;
+        font-size: clamp(42px, 7vw, 78px);
+        line-height: 1.02;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        margin-bottom: 14px;
+        font-size: clamp(28px, 4vw, 44px);
+        line-height: 1.12;
+      }
+
+      h3 {
+        margin-bottom: 8px;
+        font-size: 18px;
+      }
+
+      .lead {
+        max-width: 58ch;
+        color: var(--sub);
+        font-size: 18px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 46px;
+        align-items: center;
+        justify-content: center;
+        padding: 0 16px;
+        border-radius: 8px;
+        border: 1px solid var(--line-strong);
+        background: var(--paper);
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .button.primary {
+        border-color: var(--green);
+        background: var(--green);
+        color: #fff;
+      }
+
+      .phone {
+        border: 1px solid var(--line-strong);
+        border-radius: 22px;
+        background: #101820;
+        padding: 14px;
+        box-shadow: var(--shadow);
+      }
+
+      .phone-screen {
+        border-radius: 14px;
+        background: #f5f6f7;
+        padding: 16px;
+      }
+
+      .chat-line {
+        display: grid;
+        gap: 10px;
+      }
+
+      .chat-card {
+        display: grid;
+        gap: 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        padding: 14px;
+      }
+
+      .chat-card strong {
+        font-size: 20px;
+        line-height: 1.2;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .metric {
+        display: grid;
+        gap: 2px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fbfbfa;
+        padding: 10px;
+      }
+
+      .metric span {
+        color: var(--sub);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .metric b {
+        font-size: 17px;
+      }
+
+      .want {
+        min-height: 44px;
+        border: 0;
+        border-radius: 8px;
+        background: var(--green);
+        color: #fff;
+        font-weight: 900;
+      }
+
+      .choice-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .choice {
+        min-height: 54px;
+        border: 1px solid rgba(6, 199, 85, 0.26);
+        border-radius: 8px;
+        background: var(--soft-green);
+        color: var(--green-deep);
+        font-weight: 900;
+      }
+
+      section {
+        padding: 40px 0;
+      }
+
+      .section-head {
+        display: grid;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .section-head p {
+        max-width: 66ch;
+        color: var(--sub);
+      }
+
+      .grid-3,
+      .grid-4,
+      .grid-2 {
+        display: grid;
+        gap: 14px;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+        padding: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .card p,
+      .flow-step p {
+        color: var(--sub);
+      }
+
+      .tag {
+        display: inline-flex;
+        min-height: 24px;
+        align-items: center;
+        padding: 0 8px;
+        border-radius: 999px;
+        background: var(--soft-blue);
+        color: var(--blue);
+        font-size: 11px;
+        font-weight: 900;
+      }
+
+      .flow {
+        display: grid;
+        gap: 10px;
+      }
+
+      .flow-step {
+        display: grid;
+        grid-template-columns: 92px minmax(0, 1fr);
+        gap: 14px;
+        align-items: start;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+        padding: 14px;
+      }
+
+      .flow-step b {
+        color: var(--green-deep);
+      }
+
+      .rail {
+        display: grid;
+        gap: 8px;
+        border-left: 3px solid var(--green);
+        padding-left: 14px;
+      }
+
+      .rail-item {
+        display: grid;
+        gap: 2px;
+      }
+
+      .rail-item span {
+        color: var(--sub);
+      }
+
+      .principle {
+        background: var(--soft-orange);
+        border-color: rgba(255, 122, 0, 0.25);
+      }
+
+      .footer {
+        padding: 34px 0 44px;
+        color: var(--sub);
+      }
+
+      @media (max-width: 860px) {
+        .hero {
+          min-height: auto;
+          padding-top: 32px;
+        }
+
+        .hero-grid,
+        .grid-2,
+        .grid-3,
+        .grid-4 {
+          grid-template-columns: 1fr;
+        }
+
+        .phone {
+          max-width: 440px;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .choice-grid,
+        .metrics {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .flow-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div class="shell hero-grid">
+          <div>
+            <span class="kicker">LINEグループ共同購入OS</span>
+            <h1>募集・応募・支払い案内を3タップへ。</h1>
+            <p class="lead">
+              Warikan-kun は、学生グループの共同購入から面倒を消すサービスです。
+              主催者は募集を作るだけ。参加者は欲しい数を押すだけ。支払い以降は個別に進めます。
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#flow">動線を見る</a>
+              <a class="button" href="./product/product-blueprint.md">設計を見る</a>
+            </div>
+          </div>
+
+          <div class="phone" aria-label="Warikan-kun LINE card mock">
+            <div class="phone-screen">
+              <div class="chat-line">
+                <div class="chat-card">
+                  <span class="tag">共同購入募集</span>
+                  <strong>コカ・コーラ 500ml 24本</strong>
+                  <div class="metrics">
+                    <div class="metric">
+                      <span>合計金額</span>
+                      <b>4,800円</b>
+                    </div>
+                    <div class="metric">
+                      <span>希望単価</span>
+                      <b>200円</b>
+                    </div>
+                    <div class="metric">
+                      <span>商品個数</span>
+                      <b>24個</b>
+                    </div>
+                    <div class="metric">
+                      <span>締切</span>
+                      <b>5/4 21:00</b>
+                    </div>
+                  </div>
+                  <button class="want">欲しい</button>
+                </div>
+                <div class="choice-grid">
+                  <button class="choice">1個</button>
+                  <button class="choice">2個</button>
+                  <button class="choice">3個</button>
+                  <button class="choice">その他</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="flow">
+        <div class="shell">
+          <div class="section-head">
+            <span class="kicker">Origin</span>
+            <h2>快適さと楽さに対価が生まれる。</h2>
+            <p>
+              Warikan-kun の価値は割り勘計算ではなく、説明、数量確認、催促、支払い案内、気まずさをまとめて消すことです。
+              機能を増やすより、考えなくていい時間を増やします。
+            </p>
+          </div>
+          <div class="grid-3">
+            <article class="card principle">
+              <h3>入力させない</h3>
+              <p>案件ID、名前、LINE IDは可能な限り自動取得。参加者には数量だけを選ばせます。</p>
+            </article>
+            <article class="card principle">
+              <h3>公開と個別を分ける</h3>
+              <p>募集と応募はグループ、支払いと証跡は個別。便利さと空気の両方を守ります。</p>
+            </article>
+            <article class="card principle">
+              <h3>戻れる</h3>
+              <p>再応募は数量更新。個別に送れない時は友だち追加へ。失敗しても戻れます。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="shell grid-2">
+          <div>
+            <div class="section-head">
+              <span class="kicker">Flow</span>
+              <h2>人の動線はLINE中心。</h2>
+            </div>
+            <div class="flow">
+              <div class="flow-step">
+                <b>Host</b>
+                <p>商品名、金額、個数、締切を入れて募集カードを作る。</p>
+              </div>
+              <div class="flow-step">
+                <b>Group</b>
+                <p>botがグループに募集カードを投稿。参加者の最初の操作は「欲しい」だけ。</p>
+              </div>
+              <div class="flow-step">
+                <b>Apply</b>
+                <p>1個、2個、3個はチャット内で保存。その他だけ専用画面で入力する。</p>
+              </div>
+              <div class="flow-step">
+                <b>個別案内</b>
+                <p>支払い案内、催促、証跡、完了通知は個別に送る。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="tag">Processing Core</span>
+            <h2>処理は商用コアへ。</h2>
+            <div class="rail">
+              <div class="rail-item">
+                <strong>LIFF / LINE</strong>
+                <span>入口と最短操作に専念</span>
+              </div>
+              <div class="rail-item">
+                <strong>warikan-api</strong>
+                <span>proposal, application, payment, notification, audit を所有</span>
+              </div>
+              <div class="rail-item">
+                <strong>PostgreSQL</strong>
+                <span>Google Sheets から取引台帳を移行</span>
+              </div>
+              <div class="rail-item">
+                <strong>Event Workers</strong>
+                <span>通知、決済照合、催促、分析を非同期化</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="shell">
+          <div class="section-head">
+            <span class="kicker">Roadmap</span>
+            <h2>GMV10億円は通過点。</h2>
+            <p>
+              MVPは検証速度を優先します。PMF後は取引台帳、決済、監査、通知を本番基盤へ移し、GMV100億円以上を狙える会社価値に接続します。
+            </p>
+          </div>
+          <div class="grid-4">
+            <article class="card">
+              <h3>Phase 0</h3>
+              <p>LINE版MVPで応募率、再利用率、支払い完了率を見る。</p>
+            </article>
+            <article class="card">
+              <h3>Phase 1</h3>
+              <p>`warikan-api` と PostgreSQL に商用コアを切り出す。</p>
+            </article>
+            <article class="card">
+              <h3>Phase 2</h3>
+              <p>PayPay/PSP決済、webhook、照合、返金、消込を持つ。</p>
+            </article>
+            <article class="card">
+              <h3>Phase 3</h3>
+              <p>監視、分析、CS、不正対策、イベント基盤を拡張する。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell">
+        Warikan-kun: LINEグループの共同購入を、募集・応募・支払いまで3タップで終わらせるサービス。
+      </div>
+    </footer>
+  </body>
+</html>

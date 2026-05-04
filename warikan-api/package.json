@@ -1,0 +1,14 @@
+{
+  "name": "warikan-api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Warikan-kun commercial-core API skeleton for LINE, applications, payments, notifications, and audit.",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
